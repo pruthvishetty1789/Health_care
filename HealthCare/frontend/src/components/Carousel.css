@@ -1,0 +1,30 @@
+.full-width-carousel {
+    width: 100vw;
+    height: 100vh;
+  }
+  
+  .carousel-image {
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+  }
+  
+  .carousel-caption {
+    background: rgba(192, 233, 240, 0.6);
+    padding: 20px;
+    border-radius: 8px;
+  }
+  
+  .carousel-btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .carousel-btn:hover {
+    background-color: #0056b3;
+  }
