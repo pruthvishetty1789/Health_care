@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lung Disease Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 750px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin: auto;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        label {
+            font-size: 16px;
+            margin: 8px 0 5px;
+            display: block;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        input:focus, select:focus {
+            border: 2px solid #007bff;
+        }
+
+        .radio-group {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 15px;
+        }
+
+        button {
+            background: #007bff;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .positive {
+            background: #4caf50;
+            color: white;
+        }
+
+        .negative {
+            background: #f44336;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Lung Disease Prediction</h2>
+    <form action="/predict" method="post">
+        <label>Age:</label> 
+        <input type="number" name="Age" min="20" max="100" required>
+
+        <label>Gender:</label>
+        <div class="radio-group">
+            <label><input type="radio" name="Gender" value="0" required> Female</label>
+            <label><input type="radio" name="Gender" value="1" required> Male</label>
+        </div>
+
+        <label>Smoking:</label>
+        <div class="radio-group">
+            <label><input type="radio" name="Smoking" value="0" required> No</label>
+            <label><input type="radio" name="Smoking" value="1" required> Yes</label>
+        </div>
+
+        <label>Yellow Fingers:</label>
+        <div class="radio-group">
+            <label><input type="radio" name="Yellow_Fingers" value="0" required> No</label>
+            <label><input type="radio" name="Yellow_Fingers" value="1" required> Yes</label>
+        </div>
+
+        <label>Anxiety:</label>
+        <div class="radio-group">
+            <label><input type="radio" name="Anxiety" value="0" required> No</label>
+            <label><input type="radio" name="Anxiety" value="1" required> Yes</label>
+        </div>
+
+        <label>Peer Pressure:</label>
+        <div class="radio-group">
+            <label><input type="radio" name="Peer_Pressure" value="0" required> No</label>
+            <label><input type="radio" name="Peer_Pressure" value="1" required> Yes</label>
+        </div>
+
+        <label>Chronic Disease:</label>
+        <div class="radio-group">
+            <label><input type="radio" name="Chronic_Disease" value="0" required> No</label>
+            <label><input type="radio" name="Chronic_Disease" value="1" required> Yes</label>
+        </div>
+
+        <label>Fatigue:</label>
+        <div class="radio-group">
+            <label><input type="radio" name="Fatigue" value="0" required> No</label>
+            <label><input type="radio" name="Fatigue" value="1" required> Yes</label>
+        </div>
+
+        <label>Allergy:</label>
+        <div class="radio-group">
+            <label><input type="radio" name="Allergy" value="0" required> No</label>
+            <label><input type="radio" name="Allergy" value="1" required> Yes</label>
+        </div>
+
+        <label>Wheezing:</label>
+        <div class="radio-group">
+            <label><input type="radio" name="Wheezing" value="0" required> No</label>
+            <label><input type="radio" name="Wheezing" value="1" required> Yes</label>
+        </div>
+
+        <label>Alcohol Consumption:</label>
+        <div class="radio-group">
+            <label><input type="radio" name="Alcohol_Consuming" value="0" required> No</label>
+            <label><input type="radio" name="Alcohol_Consuming" value="1" required> Yes</label>
+        </div>
+
+        <label>Coughing:</label>
+        <div class="radio-group">
+            <label><input type="radio" name="Coughing" value="0" required> No</label>
+            <label><input type="radio" name="Coughing" value="1" required> Yes</label>
+        </div>
+
+        <button type="submit">Predict</button>
+    </form>
+
+    {% if result %}
+    <div class="result">{{ result }}</div>
+    {% endif %}
+</div>
+
+</body>
+</html>
