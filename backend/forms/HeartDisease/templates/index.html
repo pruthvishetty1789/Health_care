@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Heart Disease Prediction</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: #e0f7fa; /* Light cyan */
+        text-align: center;
+        padding: 20px;
+      }
+
+      .container {
+        max-width: 750px;
+        background: white;
+        padding: 20px;
+        border-radius: 15px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        margin: auto;
+      }
+
+      h2 {
+        margin-bottom: 20px;
+        color: #00796b;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      label {
+        font-size: 16px;
+        margin: 8px 0 5px;
+        display: block;
+        color: #004d40;
+      }
+
+      input,
+      select {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #80cbc4;
+        border-radius: 5px;
+        font-size: 16px;
+        background: #f0fdfa;
+      }
+
+      input:focus,
+      select:focus {
+        border: 2px solid #26a69a;
+        outline: none;
+        background: #e0f2f1;
+      }
+
+      .radio-group {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        margin-bottom: 15px;
+      }
+
+      .radio-group label {
+        color: #004d40;
+      }
+
+      button {
+        background: #00796b;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 18px;
+        transition: background 0.3s;
+      }
+
+      button:hover {
+        background: #004d40;
+      }
+
+      .result {
+        margin-top: 20px;
+        padding: 10px;
+        border-radius: 5px;
+        font-weight: bold;
+      }
+
+      .positive {
+        background: #4caf50;
+        color: white;
+      }
+
+      .negative {
+        background: #f44336;
+        color: white;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h2>Heart Disease Prediction</h2>
+      <form action="/predict" method="post">
+        <label>Age:</label>
+        <input
+          type="number"
+          name="Age"
+          min="20"
+          max="100"
+          placeholder="Enter your age"
+          required
+        />
+
+        <label>Sex:</label>
+        <div class="radio-group">
+          <label
+            ><input type="radio" name="Sex" value="0" required /> Female</label
+          >
+          <label
+            ><input type="radio" name="Sex" value="1" required /> Male</label
+          >
+        </div>
+
+        <label>Chest Pain Type (0-3):</label>
+        <input
+          type="number"
+          name="Chest_pain_type"
+          min="0"
+          max="3"
+          placeholder="Enter chest pain type (0-3)"
+          required
+        />
+
+        <label>Blood Pressure:</label>
+        <input
+          type="number"
+          name="BP"
+          min="90"
+          max="200"
+          placeholder="Enter blood pressure"
+          required
+        />
+
+        <label>Cholesterol:</label>
+        <input
+          type="number"
+          name="Cholesterol"
+          min="100"
+          max="600"
+          placeholder="Enter cholesterol level"
+          required
+        />
+
+        <label>FBS Over 120:</label>
+        <div class="radio-group">
+          <label
+            ><input type="radio" name="FBS_over_120" value="0" required />
+            No</label
+          >
+          <label
+            ><input type="radio" name="FBS_over_120" value="1" required />
+            Yes</label
+          >
+        </div>
+
+        <label>EKG Results:</label>
+        <input
+          type="number"
+          name="EKG_results"
+          min="0"
+          max="2"
+          placeholder="Enter EKG results (0-2)"
+          required
+        />
+
+        <label>Max Heart Rate:</label>
+        <input
+          type="number"
+          name="Max_HR"
+          min="60"
+          max="220"
+          placeholder="Enter max heart rate"
+          required
+        />
+
+        <label>Exercise Angina:</label>
+        <div class="radio-group">
+          <label
+            ><input type="radio" name="Exercise_angina" value="0" required />
+            No</label
+          >
+          <label
+            ><input type="radio" name="Exercise_angina" value="1" required />
+            Yes</label
+          >
+        </div>
+
+        <label>ST Depression:</label>
+        <input
+          type="number"
+          step="0.1"
+          name="ST_depression"
+          min="0"
+          max="6.2"
+          placeholder="Enter ST depression value"
+          required
+        />
+
+        <label>Slope of ST:</label>
+        <input
+          type="number"
+          name="Slope_of_ST"
+          min="0"
+          max="2"
+          placeholder="Enter slope of ST (0-2)"
+          required
+        />
+
+        <label>Number of Vessels Fluro:</label>
+        <input
+          type="number"
+          name="Number_of_vessels_fluro"
+          min="0"
+          max="3"
+          placeholder="Enter number of vessels fluro (0-3)"
+          required
+        />
+
+        <label>Thallium:</label>
+        <input
+          type="number"
+          name="Thallium"
+          min="1"
+          max="3"
+          placeholder="Enter thallium value (1-3)"
+          required
+        />
+
+        <button type="submit">Predict</button>
+      </form>
+
+      {% if result %}
+      <div
+        class="result {% if 'You have' in result %}positive{% else %}negative{% endif %}"
+      >
+        {{ result }}
+      </div>
+      {% endif %}
+    </div>
+  </body>
+</html>
