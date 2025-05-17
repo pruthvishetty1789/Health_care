@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stroke Prediction</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f4f4f4; text-align: center; padding: 20px; }
+        .container { max-width: 750px; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); margin: auto; }
+        h2 { margin-bottom: 20px; }
+        form { display: flex; flex-direction: column; align-items: center; }
+        label { font-size: 16px; margin: 8px 0 5px; display: block; }
+        input, select { width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 5px; font-size: 16px; }
+        button { background: #007bff; color: white; padding: 12px 20px; border: none; border-radius: 5px; cursor: pointer; font-size: 18px; }
+        .radio-group { display: flex; justify-content: center; gap: 20px; margin-bottom: 15px; }
+        button:hover { background: #0056b3; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Stroke Prediction</h2>
+    <form action="/predict" method="post">
+        <label>Age:</label> 
+        <input type="number" name="age" min="20" max="100" required>
+
+        <label>Hypertension:</label>
+        <div class="radio-group">
+            <label><input type="radio" name="hypertension" value="0" required> No</label>
+            <label><input type="radio" name="hypertension" value="1" required> Yes</label>
+        </div>
+
+        <label>Heart Disease:</label>
+        <div class="radio-group">
+            <label><input type="radio" name="heart_disease" value="0" required> No</label>
+            <label><input type="radio" name="heart_disease" value="1" required> Yes</label>
+        </div>
+
+        <label>Average Glucose Level:</label> 
+        <input type="number" step="0.1" name="avg_glucose_level" required>
+
+        <label>BMI:</label> 
+        <input type="number" step="0.1" name="bmi" required>
+
+        <label>Gender:</label>
+        <div class="radio-group">
+            <label><input type="radio" name="gender_Male" value="0" required> Female</label>
+            <label><input type="radio" name="gender_Male" value="1" required> Male</label>
+        </div>
+
+        <label>Ever Married:</label>
+        <div class="radio-group">
+            <label><input type="radio" name="ever_married_Yes" value="0" required> No</label>
+            <label><input type="radio" name="ever_married_Yes" value="1" required> Yes</label>
+        </div>
+
+        <label>Work Type:</label>
+        <select name="work_type_Private" required>
+            <option value="1">Private</option>
+            <option value="0">Other</option>
+        </select>
+        <select name="work_type_Self-employed" required>
+            <option value="1">Self-employed</option>
+            <option value="0">Other</option>
+        </select>
+        <select name="work_type_children" required>
+            <option value="1">Children</option>
+            <option value="0">Other</option>
+        </select>
+
+        <label>Residence Type:</label>
+        <div class="radio-group">
+            <label><input type="radio" name="Residence_type_Urban" value="0" required> Rural</label>
+            <label><input type="radio" name="Residence_type_Urban" value="1" required> Urban</label>
+        </div>
+
+        <label>Smoking Status:</label>
+        <select name="smoking_status_formerly smoked" required>
+            <option value="1">Formerly Smoked</option>
+            <option value="0">Other</option>
+        </select>
+        <select name="smoking_status_never smoked" required>
+            <option value="1">Never Smoked</option>
+            <option value="0">Other</option>
+        </select>
+        <select name="smoking_status_smokes" required>
+            <option value="1">Smokes</option>
+            <option value="0">Other</option>
+        </select>
+
+        <button type="submit">Predict</button>
+    </form>
+
+    {% if result %}
+    <div class="result" style="color: {{ color }}; font-weight: bold; font-size: 20px; margin-top: 15px;">
+        {{ result }}
+    </div>
+    {% endif %}
+    
+</div>
+
+</body>
+</html>
